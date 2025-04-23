@@ -19,11 +19,11 @@ pub const Scene = struct {
         };
     }
 
-    pub fn deinit(_: *Scene) void {}
+    pub fn deinit(_: Scene) void {}
 
     pub fn update(_: *Scene) void {}
 
-    pub fn draw(_: *Scene) void {
+    pub fn draw(_: Scene) void {
         rl.beginDrawing();
         defer rl.endDrawing();
 

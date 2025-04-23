@@ -14,8 +14,9 @@ pub const Scene = union(SceneKind) {
             .game => .{ .game = .init(alloc, ctx) },
         };
     }
-    pub fn deinit(self: *Scene) void {
-        switch (self.*) {
+
+    pub fn deinit(self: Scene) void {
+        switch (self) {
             .game => self.game.deinit(),
         }
     }
@@ -26,8 +27,8 @@ pub const Scene = union(SceneKind) {
         }
     }
 
-    pub fn draw(self: *Scene) void {
-        switch (self.*) {
+    pub fn draw(self: Scene) void {
+        switch (self) {
             .game => self.game.draw(),
         }
     }
