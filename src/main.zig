@@ -18,7 +18,7 @@ pub fn main() !void {
     var state = State.init(alloc);
     defer state.deinit();
 
-    state.changeScene(.sample);
+    state.changeScene(.game);
 
     while (!rl.windowShouldClose()) {
         state.scene.?.update();

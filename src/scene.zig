@@ -4,37 +4,37 @@ const Allocator = std.mem.Allocator;
 const Context = @import("Context.zig");
 const common = @import("scene/common.zig");
 pub const SceneKind = common.SceneKind;
-const sample = @import("scene/sample.zig");
+const game = @import("scene/game.zig");
 
 pub const Scene = union(SceneKind) {
-    sample: sample.Scene,
+    game: game.Scene,
 
     pub fn init(alloc: Allocator, kind: SceneKind, ctx: *Context) Scene {
         return switch (kind) {
-            .sample => .{ .sample = .init(alloc, ctx) },
+            .game => .{ .game = .init(alloc, ctx) },
         };
     }
     pub fn deinit(self: *Scene) void {
         switch (self.*) {
-            .sample => self.sample.deinit(),
+            .game => self.game.deinit(),
         }
     }
 
     pub fn update(self: *Scene) void {
         switch (self.*) {
-            .sample => self.sample.update(),
+            .game => self.game.update(),
         }
     }
 
     pub fn draw(self: *Scene) void {
         switch (self.*) {
-            .sample => self.sample.draw(),
+            .game => self.game.draw(),
         }
     }
 
     pub fn nextScene(self: Scene) ?SceneKind {
         return switch (self) {
-            .sample => |s| s.next_scene,
+            .game => |s| s.next_scene,
         };
     }
 };
